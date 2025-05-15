@@ -1,0 +1,21 @@
+[
+    {
+        "season": 1,
+        "episode": 1,
+        "title": "¡La paz ha llegado!",
+        "url": "https://example.com/dragon-ball-super/s1e1.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 2,
+        "title": "A por las esferas del dragón",
+        "url": "https://example.com/dragon-ball-super/s1e2.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 3,
+        "title": "El plan de Beerus",
+        "url": "https://example.com/dragon-ball-super/s1e3.m3u8"
+    }
+    // Añade más episodios (Dragon Ball Super tiene ~131 episodios)
+]
