@@ -1,0 +1,21 @@
+[
+    {
+        "season": 1,
+        "episode": 1,
+        "title": "¡La invasión de los dioses oscuros!",
+        "url": "https://example.com/dragon-ball-heroes/s1e1.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 2,
+        "title": "El poder de los Super Saiyan",
+        "url": "https://example.com/dragon-ball-heroes/s1e2.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 3,
+        "title": "El torneo del universo prisión",
+        "url": "https://example.com/dragon-ball-heroes/s1e3.m3u8"
+    }
+    // Añade más episodios (Dragon Ball Heroes tiene ~50 episodios hasta 2025, puede variar)
+]
