@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Streaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #1B263B;
+            color: #FFFFFF;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: #FF6200;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1200x400/FF6200/FFFFFF?text=Dragon+Ball+Banner');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .banner p {
+            font-size: 20px;
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Sección de series */
+        .series {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .series h2 {
+            font-size: 32px;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .series-card {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .series-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.5);
+        }
+
+        .series-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .series-card h3 {
+            font-size: 20px;
+            color: #FF6200;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .series-card a {
+            display: block;
+            background-color: #FF6200;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .series-card a:hover {
+            background-color: #FFD700;
+            color: #1B263B;
+        }
+
+        /* Banner 728x90 */
+        .ad-banner-728x90 {
+            max-width: 728px;
+            height: 90px;
+            margin: 20px auto;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #FF6200;
+        }
+
+        /* Banner Nativo */
+        .ad-native {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .ad-native img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .ad-native .ad-content {
+            flex: 1;
+        }
+
+        .ad-native .ad-content h3 {
+            font-size: 18px;
+            color: #FF6200;
+            margin-bottom: 10px;
+        }
+
+        .ad-native .ad-content p {
+            font-size: 14px;
+            color: #1B263B;
+        }
+
+        /* Barra Social */
+        .social-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #FF6200;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .social-bar a {
+            color: #FFFFFF;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-bar a:hover {
+            color: #FFD700;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #FF6200;
+            padding: 20px;
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .navbar .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+
+            .series-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ad-banner-728x90 {
+                width: 320px;
+                height: 50px;
+            }
+
+            .ad-native {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ad-native img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .social-bar {
+                padding: 5px;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">Dragon Ball Streaming</div>
+        <div class="nav-links">
+            <a href="#home">Inicio</a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <h1>¡Vive la aventura de Dragon Ball!</h1>
+        <p>Disfruta de todas las sagas en alta calidad, desde el clásico hasta lo más reciente.</p>
+    </section>
+
+    <!-- Banner 728x90 -->
+    <div class="ad-banner-728x90">
+        <!-- Reemplaza con tu script de anuncios 728x90 -->
+        <img src="https://via.placeholder.com/728x90/FF6200/FFFFFF?text=Anuncio+728x90" alt="Banner 728x90">
+    </div>
+
+    <!-- Sección de series -->
+    <section class="series">
+        <h2>Nuestras Series</h2>
+        <div class="series-grid">
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball" alt="Dragon Ball">
+                <h3>Dragon Ball</h3>
+                <a href="dragon-ball.html">Ver ahora</a>
+            </div>
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball+Z" alt="Dragon Ball Z">
+                <h3>Dragon Ball Z</h3>
+                <a href="dragon-ball-z.html">Ver ahora</a>
+            </div>
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball+Z+Kai" alt="Dragon Ball Z Kai">
+                <h3>Dragon Ball Z Kai</h3>
+                <a href="dragon-ball-z-kai.html">Ver ahora</a>
+            </div>
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball+Super" alt="Dragon Ball Super">
+                <h3>Dragon Ball Super</h3>
+                <a href="dragon-ball-super.html">Ver ahora</a>
+            </div>
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball+GT" alt="Dragon Ball GT">
+                <h3>Dragon Ball GT</h3>
+                <a href="dragon-ball-gt.html">Ver ahora</a>
+            </div>
+            <div class="series-card">
+                <img src="https://via.placeholder.com/300x200/FF6200/FFFFFF?text=Dragon+Ball+Heroes" alt="Dragon Ball Heroes">
+                <h3>Dragon Ball Heroes</h3>
+                <a href="dragon-ball-heroes.html">Ver ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Nativo -->
+    <div class="ad-native">
+        <img src="https://via.placeholder.com/200x150/FF6200/FFFFFF?text=Anuncio+Nativo" alt="Native Ad">
+        <div class="ad-content">
+            <h3>Anuncio Nativo</h3>
+            <p>Este es un ejemplo de anuncio nativo que se integra con el contenido de la página.</p>
+        </div>
+        <!-- Reemplaza con tu script de anuncios nativo -->
+    </div>
+
+    <!-- Barra Social -->
+    <div class="social-bar">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        <!-- Reemplaza con tu script de barra social si usas un proveedor externo -->
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2025 Dragon Ball Streaming. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para Popunder -->
+    <script>
+        // Ejemplo de script para popunder (reemplaza con el script de tu proveedor)
+        document.body.addEventListener('click', function() {
+            var popunder = window.open('https://example.com', '_blank');
+            if (popunder) {
+                popunder.blur();
+                window.focus();
+            }
+        });
+        // Reemplaza con tu script de popunder
+    </script>
+
+    <!-- Carga Font Awesome para íconos de la barra social -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+  </html>
