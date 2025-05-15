@@ -1,0 +1,33 @@
+[
+    {
+        "season": 1,
+        "episode": 1,
+        "title": "¡El regreso de Goku!",
+        "url": "https://example.com/dragon-ball-z-kai/s1e1.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 2,
+        "title": "El enemigo más fuerte",
+        "url": "https://example.com/dragon-ball-z-kai/s1e2.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 3,
+        "title": "La llegada de Raditz",
+        "url": "https://example.com/dragon-ball-z-kai/s1e3.m3u8"
+    },
+    {
+        "season": 2,
+        "episode": 1,
+        "title": "La batalla contra Freezer",
+        "url": "https://example.com/dragon-ball-z-kai/s2e1.m3u8"
+    },
+    {
+        "season": 2,
+        "episode": 2,
+        "title": "El poder del Super Saiyan",
+        "url": "https://example.com/dragon-ball-z-kai/s2e2.m3u8"
+    }
+    // Añade más episodios según necesites
+]
