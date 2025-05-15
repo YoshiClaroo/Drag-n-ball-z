@@ -1,0 +1,21 @@
+[
+    {
+        "season": 1,
+        "episode": 1,
+        "title": "¡Un nuevo héroe ha llegado!",
+        "url": "https://example.com/dragon-ball-z/s1e1.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 2,
+        "title": "Raditz, el hermano de Goku",
+        "url": "https://example.com/dragon-ball-z/s1e2.m3u8"
+    },
+    {
+        "season": 1,
+        "episode": 3,
+        "title": "La unión hace la fuerza",
+        "url": "https://example.com/dragon-ball-z/s1e3.m3u8"
+    }
+    // Añade más episodios (Dragon Ball Z tiene ~291 episodios)
+]
