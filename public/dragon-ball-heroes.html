@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Heroes - Streaming</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #1B263B;
+            color: #FFFFFF;
+        }
+
+        .navbar {
+            background-color: #FF6200;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1200x300/FF6200/FFFFFF?text=Dragon+Ball+Heroes+Banner');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .banner h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .banner p {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .player {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .plyr {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 32px;
+            color: #FFD700;
+            margin: 20px 0;
+        }
+
+        .episodes {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .episodes h2 {
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .season-filter {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .season-filter select {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #FF6200;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .season-filter select:focus {
+            outline: none;
+            background-color: #FFD700;
+            color: #1B263B;
+        }
+
+        .episode-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .episode-item {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .episode-item:hover {
+            background-color: #FFD700;
+        }
+
+        .episode-item span {
+            color: #1B263B;
+            font-weight: 600;
+        }
+
+        .episode-item a {
+            color: #FF6200;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .episode-item a:hover {
+            color: #1B263B;
+        }
+
+        .ad-banner-728x90 {
+            max-width: 728px;
+            height: 90px;
+            margin: 20px auto;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #FF6200;
+        }
+
+        .ad-native {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .ad-native img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .ad-native .ad-content {
+            flex: 1;
+        }
+
+        .ad-native .ad-content h3 {
+            font-size: 18px;
+            color: #FF6200;
+            margin-bottom: 10px;
+        }
+
+        .ad-native .ad-content p {
+            font-size: 14px;
+            color: #1B263B;
+        }
+
+        .direct-click {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .direct-click a {
+            display: inline-block;
+            background-color: #FFD700;
+            color: #1B263B;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .direct-click a:hover {
+            background-color: #FF6200;
+            color: #FFFFFF;
+        }
+
+        .social-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #FF6200;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .social-bar a {
+            color: #FFFFFF;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-bar a:hover {
+            color: #FFD700;
+        }
+
+        @media (min-width: 1024px) {
+            .social-bar {
+                bottom: auto;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                flex-direction: column;
+                padding: 20px 10px;
+                border-radius: 10px;
+            }
+        }
+
+        footer {
+            background-color: #FF6200;
+            padding: 20px;
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .banner h1 {
+                font-size: 28px;
+            }
+
+            .banner p {
+                font-size: 14px;
+            }
+
+            .player {
+                width: 100%;
+            }
+
+            .ad-banner-728x90 {
+                width: 320px;
+                height: 50px;
+            }
+
+            .ad-native {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ad-native img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .episode-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Dragon Ball Streaming</div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <h1>Dragon Ball Heroes</h1>
+        <p>Épicas batallas en dimensiones alternativas</p>
+    </section>
+
+    <h1 class="page-title">Dragon Ball Heroes</h1>
+
+    <section class="player">
+        <video id="player" class="plyr" playsinline controls>
+            <source src="https://example.com/dragon-ball-heroes/s1e1.m3u8" type="application/x-mpegURL" />
+        </video>
+    </section>
+
+    <div class="ad-banner-728x90">
+        <!-- Reemplaza con tu script de anuncios 728x90 -->
+        <img src="https://via.placeholder.com/728x90/FF6200/FFFFFF?text=Anuncio+728x90" alt="Banner 728x90">
+    </div>
+
+    <div class="direct-click">
+        <!-- Reemplaza con tu enlace o script de DirectClick -->
+        <a href="https://example.com/ad" target="_blank">¡Descubre más aquí!</a>
+    </div>
+
+    <section class="episodes">
+        <h2>Episodios</h2>
+        <div class="season-filter">
+            <select id="season-select" onchange="filterEpisodes()">
+                <option value="all">Todas las temporadas</option>
+            </select>
+        </div>
+        <div class="episode-list" id="episode-list"></div>
+    </section>
+
+    <div class="ad-native">
+        <img src="https://via.placeholder.com/200x150/FF6200/FFFFFF?text=Anuncio+Nativo" alt="Native Ad">
+        <div class="ad-content">
+            <h3>Anuncio Nativo</h3>
+            <p>Este es un ejemplo de anuncio nativo que se integra con el contenido de la página.</p>
+        </div>
+        <!-- Reemplaza con tu script de anuncios nativo -->
+    </div>
+
+    <div class="social-bar">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        <!-- Reemplaza con tu script de barra social si usas un proveedor externo -->
+    </div>
+
+    <footer>
+        <p>© 2025 Dragon Ball Streaming. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const player = new Plyr('#player', {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+            settings: ['quality', 'speed', 'loop'],
+            quality: { default: 720, options: [1080, 720, 480, 360] }
+        });
+
+        const video = document.getElementById('player');
+        const source = 'https://example.com/dragon-ball-heroes/s1e1.m3u8';
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(source);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = source;
+        }
+
+        fetch('episodes-dragon-ball-heroes.json')
+            .then(response => response.json())
+            .then(episodes => {
+                const episodeList = document.getElementById('episode-list');
+                const seasonSelect = document.getElementById('season-select');
+
+                const seasons = [...new Set(episodes.map(ep => ep.season))];
+                seasons.forEach(season => {
+                    const option = document.createElement('option');
+                    option.value = season;
+                    option.textContent = `Temporada ${season}`;
+                    seasonSelect.appendChild(option);
+                });
+
+                renderEpisodes(episodes);
+
+                function renderEpisodes(episodesToShow) {
+                    episodeList.innerHTML = '';
+                    episodesToShow.forEach(ep => {
+                        const episodeItem = document.createElement('div');
+                        episodeItem.className = 'episode-item';
+                        episodeItem.innerHTML = `
+                            <span>T${ep.season} E${ep.episode}: ${ep.title}</span>
+                            <a href="#" onclick="changeEpisode('${ep.url}')">Ver ahora</a>
+                        `;
+                        episodeList.appendChild(episodeItem);
+                    });
+                }
+
+                window.filterEpisodes = function() {
+                    const selectedSeason = seasonSelect.value;
+                    if (selectedSeason === 'all') {
+                        renderEpisodes(episodes);
+                    } else {
+                        const filteredEpisodes = episodes.filter(ep => ep.season == selectedSeason);
+                        renderEpisodes(filteredEpisodes);
+                    }
+                };
+            })
+            .catch(error => console.error('Error al cargar episodios:', error));
+
+        function changeEpisode(url) {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(video);
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = url;
+            }
+            player.play();
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+          </html>
