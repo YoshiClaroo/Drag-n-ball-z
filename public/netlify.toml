@@ -1,0 +1,45 @@
+# Configuración general
+[build]
+  # Directorio donde están los archivos estáticos (tus HTML, JSON, etc.)
+  publish = "public"
+  # Comando de construcción (no necesario para sitios estáticos, pero lo dejamos vacío)
+  command = ""
+
+# Configuración para el entorno de despliegue
+[build.environment]
+  # Opcional: Define variables de entorno si las necesitas
+  # Por ejemplo, para configurar Node.js si usas scripts
+  NODE_VERSION = "18"
+
+# Redirecciones
+[[redirects]]
+  # Redirige la raíz (/) a /index.html
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # Maneja errores 404 redirigiendo a index.html
+  # Útil para aplicaciones de página única o para evitar páginas no encontradas
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Configuración de cabeceras para archivos específicos
+[[headers]]
+  # Aplica a todos los archivos en la carpeta public
+  for = "/*"
+  [headers.values]
+    # Habilita CORS para los archivos .m3u8 y JSON
+    Access-Control-Allow-Origin = "*"
+    # Cache para archivos estáticos (HTML, CSS, JS, JSON)
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  # Configuración específica para archivos .m3u8
+  for = "*.m3u8"
+  [headers.values]
+    # Habilita CORS específicamente para los videos
+    Access-Control-Allow-Origin = "*"
+    # Cache más largo para videos
+    Cache-Control = "public, max-age=86400"
