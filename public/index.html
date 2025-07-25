@@ -4,366 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="site-verification" content="e9d605182a31f9f1250987b753ef3c7a"/>
-    <title>Dragon Ball Streaming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>VideoFlow | Videos MP4</title>
     <style>
+        :root {
+            --primary: #6C5CE7; /* Morado moderno */
+            --secondary: #00CEFF; /* Azul brillante */
+            --dark: #2D3436; /* Fondo oscuro */
+            --light: #F5F6FA; /* Fondo claro */
+            --accent: #FF7675; /* Rojo coral */
+            --text: #2D3436;
+            --text-light: #F5F6FA;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #1B263B;
-            color: #FFFFFF;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        /* Barra de navegación */
-        .navbar {
-            background-color: #FF6200;
-            padding: 15px 20px;
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text-light);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Banner Horizontal (920x90) */
+        .banner-horizontal {
+            background: linear-gradient(135deg, var(--dark), #3D4A52);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin: 1.5rem auto;
+            max-width: 920px;
+            height: 90px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FFFFFF;
-            text-transform: uppercase;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .navbar .nav-links a {
-            color: #FFFFFF;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .navbar .nav-links a:hover {
-            color: #FFD700;
-        }
-
-        /* Banner */
-        .banner {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1200x400/FF6200/FFFFFF?text=Dragon+Ball+Banner');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .banner h1 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #FFD700;
-            text-shadow: 2px 2px 4px #000000;
-        }
-
-        .banner p {
-            font-size: 20px;
-            color: #FFFFFF;
-            margin-top: 10px;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Sección de series */
-        .series {
-            padding: 40px 20px;
+        /* Contenedor Principal */
+        .main-container {
+            display: flex;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 1.5rem;
         }
 
-        .series h2 {
-            font-size: 32px;
-            color: #FFD700;
-            text-align: center;
-            margin-bottom: 30px;
+        /* Banner Vertical (300x250) */
+        .banner-vertical {
+            background: linear-gradient(135deg, var(--accent), #FFA07A);
+            color: white;
+            width: 300px;
+            height: 250px;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 1rem;
         }
 
-        .series-grid {
+        /* Video Grid */
+        .video-grid {
+            flex: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
         }
 
-        .series-card {
-            background-color: #FFFFFF;
+        /* Video Card */
+        .video-card {
+            background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .series-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.5);
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .series-card img {
+        .video-player {
             width: 100%;
             height: 200px;
+            background: #000;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .series-card h3 {
-            font-size: 20px;
-            color: #FF6200;
-            padding: 15px;
-            text-align: center;
+        .video-info {
+            padding: 1.2rem;
         }
 
-        .series-card a {
-            display: block;
-            background-color: #FF6200;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
+        .video-info h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .video-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .video-id {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
             font-weight: 600;
-            transition: background-color 0.3s;
         }
 
-        .series-card a:hover {
-            background-color: #FFD700;
-            color: #1B263B;
-        }
-
-        /* Banner 728x90 */
-        .ad-banner-728x90 {
-            max-width: 728px;
-            height: 90px;
-            margin: 20px auto;
-            background-color: #FFFFFF;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #FF6200;
-        }
-
-        /* Banner Nativo */
-        .ad-native {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .ad-native img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .ad-native .ad-content {
-            flex: 1;
-        }
-
-        .ad-native .ad-content h3 {
-            font-size: 18px;
-            color: #FF6200;
-            margin-bottom: 10px;
-        }
-
-        .ad-native .ad-content p {
-            font-size: 14px;
-            color: #1B263B;
-        }
-
-        /* Barra Social */
-        .social-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #FF6200;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .social-bar a {
-            color: #FFFFFF;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-
-        .social-bar a:hover {
-            color: #FFD700;
-        }
-
-        /* Pie de página */
+        /* Footer */
         footer {
-            background-color: #FF6200;
-            padding: 20px;
+            background: var(--dark);
+            color: var(--text-light);
             text-align: center;
-            color: #FFFFFF;
-            font-size: 14px;
+            padding: 2rem 0;
+            margin-top: 3rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .navbar {
+            .main-container {
                 flex-direction: column;
-                gap: 10px;
             }
-
-            .navbar .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .banner h1 {
-                font-size: 32px;
-            }
-
-            .banner p {
-                font-size: 16px;
-            }
-
-            .series-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ad-banner-728x90 {
-                width: 320px;
-                height: 50px;
-            }
-
-            .ad-native {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .ad-native img {
+            .banner-vertical {
                 width: 100%;
-                max-width: 300px;
-            }
-
-            .social-bar {
-                padding: 5px;
-                gap: 15px;
+                height: auto;
+                position: static;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="logo">Dragon Ball Streaming</div>
-        <div class="nav-links">
-            <a href="#home">Inicio</a>
+    <!-- Header -->
+    <header>
+        <h1>VideoFlow</h1>
+        <p>Videos MP4 con IDs Únicos</p>
+    </header>
+
+    <!-- Banner Horizontal (920x90) -->
+    <div class="banner-horizontal">
+        <p>Espacio Publicitario 920x90</p>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="main-container">
+        <!-- Banner Vertical (300x250) -->
+        <aside class="banner-vertical">
+            <p>Espacio Publicitario 300x250</p>
+        </aside>
+
+        <!-- Grid de Videos -->
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-player">
+                    <video controls poster="https://via.placeholder.com/350x200">
+                        <source src="ruta/video1.mp4" type="video/mp4">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h2>Título del Video 1</h2>
+                    <p>Descripción breve del video.</p>
+                    <span class="video-id">ID: video1</span>
+                    <p><small>Comparte: <strong>tudominio.com/video1</strong></small></p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-player">
+                    <video controls poster="https://via.placeholder.com/350x200">
+                        <source src="ruta/video2.mp4" type="video/mp4">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h2>Título del Video 2</h2>
+                    <p>Descripción breve del video.</p>
+                    <span class="video-id">ID: video2</span>
+                    <p><small>Comparte: <strong>tudominio.com/video2</strong></small></p>
+                </div>
+            </div>
+
+            <!-- Más videos... -->
         </div>
-    </nav>
-
-    <!-- Banner -->
-    <section class="banner" id="home">
-        <h1>¡Vive la aventura de Dragon Ball!</h1>
-        <p>Disfruta de todas las sagas en alta calidad, desde el clásico hasta lo más reciente.</p>
-    </section>
-
-    <!-- Banner 728x90 -->
-    <div class="ad-banner-728x90">
-     <script type="text/javascript" src="https://cdn.diclotrans.com/sdk/v1/51671/81ece1bc0f200eb303a254e2f716869318b5cce3/lib.js"></script>      
     </div>
 
-    <div class="ad-native">
-       <script type="text/javascript" src="https://cdn.diclotrans.com/sdk/v1/51566/df1ecd691cca2e8b32de4caf13decf20291e90e3/lib.js"></script>
-    </div>
-
-    <!-- Sección de series -->
-    <section class="series">
-        <h2>Nuestras Series</h2>
-        <div class="series-grid">
-            <div class="series-card">
-                <img src="https://i.postimg.cc/NF4C3fP4/MV5-BOWI0-Nzkx-YTUt-NGU5-MS00-MTUw-LTk3-NDIt-MTFl-ZDJi-M2-Nl-ZDAx-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg" alt="Dragon Ball">
-                <h3>Dragon Ball</h3>
-                <a href="dragon-ball.html">Ver ahora</a>
-            </div>
-            <div class="series-card">
-                <img src="https://i.postimg.cc/sfm9HcSn/f915667ba24da046a50e867496d7b0df9c64b3b7bcb37a2191c86214b201770f.jpg" alt="Dragon Ball Z">
-                <h3>Dragon Ball Z</h3>
-                <a href="dragon-ball-z.html">Ver ahora</a>
-            </div>
-            <div class="series-card">
-                <img src="https://i.postimg.cc/cJ3BDGMY/dragon-ball-z-kai-1600-x-900-wallpaper-i282end00dnumitt.jpg" alt="Dragon Ball Z Kai">
-                <h3>Dragon Ball Z Kai</h3>
-                <a href="dragon-ball-z-kai.html">Ver ahora</a>
-            </div>
-            <div class="series-card">
-                <img src="https://i.postimg.cc/JhHP9kms/unnamed.jpg" alt="Dragon Ball Super">
-                <h3>Dragon Ball Super</h3>
-                <a href="dragon-ball-super.html">Ver ahora</a>
-            </div>
-            <div class="series-card">
-                <img src="https://i.postimg.cc/QxP7vnMq/0d032e975500c0b9553890b3973de28876c95b4cd56cd22b42df47df2736cc2a.jpg" alt="Dragon Ball GT">
-                <h3>Dragon Ball GT</h3>
-                <a href="dragon-ball-gt.html">Ver ahora</a>
-            </div>
-            <div class="series-card">
-                <img src="https://i.postimg.cc/G27tGH8j/dbheroes.jpg" alt="Dragon Ball Heroes">
-                <h3>Dragon Ball Heroes</h3>
-                <a href="dragon-ball-heroes.html">Ver ahora</a>
-            </div>
-	    <div class="series-card">
-                <img src="https://i.postimg.cc/nht1tQDG/DRAGONBALL-DAIMA.jpg" alt="Dragon Ball Heroes">
-                <h3>Dragon Ball Daima</h3>
-                <a href="">Ver ahora</a>
-	    </div>
-        </div>
-    </section>
-
-    <!-- Banner Nativo -->
-    <script type="text/javascript" src="https://cdn.diclotrans.com/sdk/v1/52491/93a8478364708a7cd13aa1c782452625a99beec4/lib.js"></script>
-    <script type="text/javascript" src="https://cdn.diclotrans.com/sdk/v1/52492/c4c9579094c8339a383b8c8980dd4dd3c562a0d4/lib.js"></script>
-	
-    <!-- Barra Social -->
-    <div class="social-bar">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-        <!-- Reemplaza con tu script de barra social si usas un proveedor externo -->
-    </div>
-
-    <!-- Pie de página -->
+    <!-- Footer -->
     <footer>
-        <p>© 2025 Dragon Ball Streaming. Todos los derechos reservados.</p>
+        <p>&copy; 2024 VideoFlow. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script para Popunder -->
     <script>
-        
+        // Redirigir a videos por ID (ej: /video1)
+        const currentPath = window.location.pathname.split('/').pop();
+        if (currentPath.startsWith('video')) {
+            const videoId = currentPath.replace('video', '');
+            const targetVideo = document.querySelector(`.video-id:contains('${videoId}')`);
+            if (targetVideo) {
+                targetVideo.closest('.video-card').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
-
-    <!-- Carga Font Awesome para íconos de la barra social -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
-  </html>
+</html>
